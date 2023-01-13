@@ -5,6 +5,6 @@ namespace Enums
         Fail,
         Win,
         Start,
-        Level
+        Level,
     }
 }
