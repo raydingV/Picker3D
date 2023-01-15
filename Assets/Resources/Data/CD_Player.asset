@@ -17,5 +17,6 @@ MonoBehaviour:
       ForwardSpeed: 0
       SidewaysSpeed: 0
       ForwardForceCounter: 0
+      MiniGameMultiplier: 0
     ScaleData:
       ScaleFactor: 0

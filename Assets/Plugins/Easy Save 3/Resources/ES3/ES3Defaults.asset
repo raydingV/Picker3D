@@ -32,7 +32,12 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - Cinemachine
+    - NonConvexCollider
+    - NonConvexColliderRuntimeAPI
+    - NonConvexEditor
     - PPv2URPConverters
+    - RuntimeTestAssembly
     - Sirenix.OdinInspector.CompatibilityLayer
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
