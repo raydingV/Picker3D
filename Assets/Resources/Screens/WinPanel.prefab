@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  button: {fileID: 0}
+  button: {fileID: 540332708389096524}
 --- !u!1 &540332708980792701
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,12 +32,19 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - Boxophobic.PolyverseSkies.Editor
+    - Boxophobic.PolyverseSkies.Runtime
+    - Boxophobic.PolyverseSkies.Scripts
+    - Boxophobic.Utils.Editor
+    - Boxophobic.Utils.Scripts
     - Cinemachine
     - NonConvexCollider
     - NonConvexColliderRuntimeAPI
     - NonConvexEditor
     - PPv2URPConverters
     - RuntimeTestAssembly
+    - sc.stylizedwater2.editor
+    - sc.stylizedwater2.runtime
     - Sirenix.OdinInspector.CompatibilityLayer
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
