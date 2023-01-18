@@ -15,8 +15,8 @@ MonoBehaviour:
   Data:
     MovementData:
       ForwardSpeed: 10
-      SidewaysSpeed: 4
+      SidewaysSpeed: 8
       ForwardForceCounter: 3
-      MiniGameMultiplier: 1.35
+      MiniGameMultiplier: 40
     ScaleData:
       ScaleFactor: 1.2

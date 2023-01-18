@@ -1,6 +1,7 @@
 using Data.ValueObjects;
 using Keys;
 using Managers;
+using Signals;
 using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Controllers.Player
         #region Serialized Variables
 
         [SerializeField] private PlayerManager manager;
+        [SerializeField] private PlayerPhysicsController physicsController;
 
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private new Collider collider;
@@ -24,10 +26,11 @@ namespace Controllers.Player
 
         [ShowInInspector] private MovementData _data;
 
-        [ShowInInspector] private bool _isReadyToMove, _isReadyToPlay;
+        [ShowInInspector] private bool _isReadyToMove, _isReadyToPlay, _finalMovement, _collectableScore;
 
         private float _xValue;
         private float2 _clampValues;
+        public float _scoreValue;
 
         #endregion
 
@@ -40,6 +43,11 @@ namespace Controllers.Player
 
         private void FixedUpdate()
         {
+            if(_scoreValue >= 1)
+            {
+                _scoreValue = 1;
+            }
+
             if (!_isReadyToPlay)
             {
                 StopPlayer();
@@ -53,6 +61,23 @@ namespace Controllers.Player
             else
             {
                 StopPlayerHorizontaly();
+            }
+
+            if(_collectableScore)
+            {
+                _scoreValue += 0.015f;
+                CollectableScore(false);
+            }
+
+            if(_finalMovement)
+            {
+                SlowDownPlayer();
+                MovementSpeedFinal();
+            }
+
+            if (_data.ForwardSpeed <= 0)
+            {
+                endGame();
             }
         }
 
@@ -78,6 +103,11 @@ namespace Controllers.Player
             rigidbody.angularVelocity = float3.zero;
         }
 
+        private void SlowDownPlayer()
+        {
+            _scoreValue -= Time.deltaTime / 10f;
+        }
+
         private void StopPlayer()
         {
             rigidbody.velocity = float3.zero;
@@ -94,6 +124,16 @@ namespace Controllers.Player
             _isReadyToMove = condition;
         }
 
+        internal void FinalMovement(bool condition)
+        {
+            _finalMovement = condition;
+        }
+
+        internal void CollectableScore(bool condition)
+        {
+            _collectableScore = condition;
+        }
+
         internal void UpdateInputParams(HorizontalnputParams inputParams)
         {
             _xValue = inputParams.HorizontalInputValue;
@@ -106,6 +146,18 @@ namespace Controllers.Player
             StopPlayer();
             _isReadyToPlay = false;
             _isReadyToMove = false;
+            _finalMovement = false;
+        }
+
+        private void MovementSpeedFinal()
+        {
+            _data.ForwardSpeed = _scoreValue * _data.MiniGameMultiplier;
+        }
+
+        private void endGame()
+        {
+            StopPlayer();
+            CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
         }
     }
 }

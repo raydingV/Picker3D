@@ -121,8 +121,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.54, y: 2.869615, z: 1.66}
-  m_Center: {x: 0, y: -0.24085069, z: 0}
+  m_Size: {x: 1.471074, y: 2.869615, z: 2.3207345}
+  m_Center: {x: -0.0020960174, y: -0.24085064, z: 0.5714183}
 --- !u!54 &6467165668857814205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   manager: {fileID: 6467165669467704083}
   collider: {fileID: 0}
   rigidbody: {fileID: 0}
+  movementController: {fileID: 0}
 --- !u!1 &6467165669467704081
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,8 +235,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 6467165669467704083}
+  physicsController: {fileID: 0}
   rigidbody: {fileID: 6467165669467704084}
   collider: {fileID: 0}
+  _scoreValue: 0
 --- !u!1001 &6467165668975884755
 PrefabInstance:
   m_ObjectHideFlags: 0

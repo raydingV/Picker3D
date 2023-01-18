@@ -16,6 +16,7 @@ namespace Controllers.Player
         [SerializeField] private PlayerManager manager;
         [SerializeField] private new Collider collider;
         [SerializeField] private new Rigidbody rigidbody;
+        [SerializeField] private PlayerMovementController movementController;
 
         #endregion
 
@@ -44,6 +45,16 @@ namespace Controllers.Player
                     else CoreGameSignals.Instance.onLevelFailed?.Invoke();
                 });
                 return;
+            }
+
+            if(other.CompareTag("StageFinal"))
+            {
+                movementController.FinalMovement(true);
+            }
+
+            if(other.CompareTag("Collectable"))
+            {
+                movementController.CollectableScore(true);
             }
         }
 

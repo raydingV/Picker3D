@@ -1,15 +1,27 @@
 using System;
+using Controllers.Player;
 using Enums;
 using Signals;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Managers
 {
     public class UIManager : MonoBehaviour
     {
+        [SerializeField] private Slider _scoreUI;
+        [SerializeField] private PlayerMovementController _movementController;
+        [SerializeField] private TextMeshProUGUI _scoreUIText;
+
         private void OnEnable()
         {
             SubscribeEvents();
+        }
+
+        private void Update()
+        {
+            scoreManagementUI();
         }
 
         private void SubscribeEvents()
@@ -50,6 +62,8 @@ namespace Managers
             CoreGameSignals.Instance.onPlay?.Invoke();
             CoreUISignals.Instance.onClosePanel?.Invoke(1);
             CameraSignals.Instance.onSetCameraTarget?.Invoke();
+            describePlayerScripts();
+            _movementController._scoreValue = 0;
         }
 
         private void OnLevelInitialize(int levelValue)
@@ -73,6 +87,17 @@ namespace Managers
         {
             CoreUISignals.Instance.onCloseAllPanels?.Invoke();
             CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Start, 1);
+        }
+
+        private void scoreManagementUI()
+        {
+            _scoreUI.value = _movementController._scoreValue;
+            _scoreUIText.text = "% " + (_scoreUI.value * 100).ToString("F0");
+        }
+
+        private void describePlayerScripts()
+        {
+            _movementController = GameObject.Find("LevelHolder/level0(Clone)/PlayerManager").GetComponent<PlayerMovementController>();
         }
     }
 }
